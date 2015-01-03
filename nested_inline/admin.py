@@ -107,7 +107,7 @@ class NestedModelAdmin(admin.ModelAdmin):
                     fieldsets, prepopulated, readonly, model_admin=self)
                 wrapped_nested_formsets.append(wrapped_nested_formset)
                 media = get_media(wrapped_nested_formset.media)
-                if nested_inline.inlines:
+                if hasattr(inline, 'inlines') and nested_inline.inlines:
                     media = get_media(self.wrap_nested_inline_formsets(request, nested_inline, nested_formset))
             form.nested_formsets = wrapped_nested_formsets
         return media
